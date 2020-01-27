@@ -9,19 +9,22 @@
     <?php wp_head(); ?>
   </head>
 
-  <body>
+  <body <?php body_class(); ?>>
 
     <header class="grid-container">
       <div class="grid-x">
         <div class="cell large-6">
-          <img src="img/logo.jpg" alt="logo">
+          <?php 
+            if(function_exists(the_custom_logo())) {
+                the_custom_logo();
+            }
+          ?>
         </div>
         <div class="cell large-6">
-          <ul class="menu simple main-nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="index.html">Services</a></li>
-          </ul>
+          <?php wp_nav_menu(array(
+              'theme_location' => 'primary',
+              'container_class' => 'menu simple main-nav'
+          )); ?>
         </div>
       </div>
     </header>
@@ -30,9 +33,9 @@
       <div class="grid-x">
         <div class="cell large-12">
           <div class="showcase callout secondary">
-            <h1>Discount Clothing</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas voluptatem temporibus modi iusto esse dolor eum iure magnam. Repellat quibusdam minus explicabo quidem perferendis veniam quaerat illo ducimus in saepe.</p>
-            <button class="button">Start Shopping</button>
+            <?php if(is_active_sidebar( 'showcase' )) : ?>
+              <?php dynamic_sidebar('showcase'); ?>
+            <?php endif; ?>
           </div>
         </div>
       </div>
