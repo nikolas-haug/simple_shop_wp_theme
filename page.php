@@ -18,12 +18,12 @@
           <div class="products grid-x">
             <?php if(have_posts()) : ?>
               <?php while(have_posts()) : the_post(  ); ?>
-                <div class="cell large-4 medium-4 small-12 product end">
-                  <h3><?php the_title( ); ?></h3>
-                  <?php if(has_post_thumbnail( )) : ?>
-                    <?php the_post_thumbnail( ); ?>
-                  <?php endif; ?>
-                  <a href="<?php echo the_permalink(); ?>" class="button">Details</a>
+                <div class="cell large-12">
+                    <h3><?php the_title( ); ?></h3>
+                    <?php if(has_post_thumbnail( )) : ?>
+                        <?php the_post_thumbnail( ); ?>
+                    <?php endif; ?>
+                    <?php the_content( ); ?>
                 </div>
               <?php endwhile; ?>
             <?php endif; ?>
